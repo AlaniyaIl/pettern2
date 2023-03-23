@@ -6,6 +6,8 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import lombok.Value;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
@@ -47,7 +49,8 @@ public class DataGenerator {
         private Registration() {
         }
 
-        public static RegistrationDto getUser(String status) {
+        @Contract("_ -> new")
+        public static @NotNull RegistrationDto getUser(String status) {
             return new RegistrationDto(getRandomLogin(), getRandomPassword(), status);
         }
 
